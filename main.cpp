@@ -33,9 +33,6 @@ void inverse(double* A, int N)
     delete[] WORK;
 }
 
-//~ void mul_A_B_in_C(const std::vector<double> &A, const int A_m, const int A_n,
-              //~ const std::vector<double> &B, const int B_m, const int B_n,
-              //~ std::vector<double> &C, const int C_m, const int C_n) {
 void mul_A_B_in_C(std::vector<double> &A, const int A_m, const int A_n,
                   std::vector<double> &B, const int B_m, const int B_n,
                   std::vector<double> &C, const int C_m, const int C_n) {
@@ -107,45 +104,8 @@ void E_plus_A_in_A(std::vector<double> &A, int m, int n){
 
     for(auto i = 0; i < m*n; ++i) {
         A[i*m*n+i] = 1+A[i*m*n+i];
-
-        //~ if(i%n) {
-            //~ A[i*m*n+i-1] *= -1;
-        //~ }
-
-        //~ if((i+1)%n) {
-            //~ A[i*m*n+i+1] *= -1;
-        //~ }
-
-        //~ if(i >= n) {
-            //~ A[i*m*n+i-n] *= -1;
-        //~ }
-
-        //~ if(i < m*n - n) {
-            //~ A[i*m*n+i+n] *= -1;
-        //~ }
     }
 }
-
-//~ int main(){
-
-    //~ std::vector<double> A = {
-        //~ 1,2,
-        //~ 3,4
-    //~ };
-    //~ std::vector<double> B = {
-        //~ 1,2,
-        //~ 3,4
-    //~ };
-
-    //~ std::vector<double> C(4);
-
-    //~ mul_A_B_in_C(A, 2, 2, B, 2, 2, C, 2, 2);
-
-    //~ printf("%f %f\n", C[0], C[2]);
-    //~ printf("%f %f\n", C[1], C[3]);
-
-    //~ return 0;
-//~ }
 
 double function(double x, double y, double t) {
     //~ return 0;
@@ -261,14 +221,6 @@ void calculate_coefficients(std::vector<double> &A,
         b_1[i*(down_x.size()-2)] += left_x[i] / (h_x*h_x);
         b_1[(i+1)*(down_x.size()-2)-1] += right_x[i] /(h_x*h_x);
     }
-    //~ for(auto i = 0; i < x_axis_grid.size()-2; ++i) {
-        //~ b[i] += down_bound(x_axis_grid[i+1], t+tau) * tau /(h_y*h_y) * a[i];
-        //~ b[b.size()-i-1] += up_bound(x_axis_grid[x_axis_grid.size()-i-2], t+tau) * tau /(h_y*h_y)* a[b.size()-i-1];
-    //~ }
-    //~ for(auto i = 1; i < y_axis_grid.size()-2; ++i) {
-        //~ b[i*(x_axis_grid.size()-2)] += left_bound(y_axis_grid[i], t+tau) * tau /(h_x*h_x) * a[i*(x_axis_grid.size()-2)];
-        //~ b[(i+1)*(x_axis_grid.size()-2)-1] += right_bound(y_axis_grid[i], t+tau) * tau /(h_x*h_x) * a[(i+1)*(x_axis_grid.size()-2)-1];
-    //~ }
 
     mul_vector_scalar(b, -1);
     vector_plus_vector(x, b);
